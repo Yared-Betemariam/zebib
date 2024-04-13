@@ -1,47 +1,5 @@
-import prisma from "@/lib/prisma";
-import NextAuth, { NextAuthOptions } from "next-auth";
-import CredentialsProvider from "next-auth/providers/credentials";
-import { PrismaAdapter } from "@auth/prisma-adapter";
-import { Adapter } from "next-auth/adapters";
-
-export const authOptions: NextAuthOptions = {
-  pages: {
-    signIn: "/auth/sign-in",
-  },
-  session: { strategy: "jwt" },
-  callbacks: {
-    session: ({ session, token, user }) => {
-      if (token) {
-        session.user.id = token.sub;
-        session.user.name = token.name;
-        session.user.email = token.email;
-        session.user.image = token.picture;
-      }
-      return session;
-    },
-  },
-  adapter: PrismaAdapter(prisma) as Adapter,
-  secret: process.env.NEXTAUTH_SECRET,
-  providers: [
-    CredentialsProvider({
-      type: "credentials",
-      async authorize(credentials, req) {
-        if (!credentials?.phoneNumber)
-          throw new Error("Please provide a phone number.");
-        const user = await prisma.user.findMany({
-          where: {
-            phoneNumber: credentials?.phoneNumber,
-          },
-        });
-        if (!user.length) throw new Error("User Not Found. Create Account");
-        return user[0];
-      },
-      credentials: {
-        phoneNumber: { label: "phoneNumber", type: "text" },
-      },
-    }),
-  ],
-};
+import NextAuth from "next-auth";
+import { authOptions } from "@/lib/utils";
 
 const handler = NextAuth(authOptions);
 

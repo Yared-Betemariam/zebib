@@ -1,9 +1,51 @@
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { PrismaAdapter } from "@auth/prisma-adapter";
 import axios from "axios";
 import { type ClassValue, clsx } from "clsx";
-import { getServerSession } from "next-auth";
+import { NextAuthOptions, getServerSession } from "next-auth";
 import { Noto_Serif_Ethiopic } from "next/font/google";
+import CredentialsProvider from "next-auth/providers/credentials";
+
 import { twMerge } from "tailwind-merge";
+import prisma from "./prisma";
+import { Adapter } from "next-auth/adapters";
+export const authOptions: NextAuthOptions = {
+  pages: {
+    signIn: "/auth/sign-in",
+  },
+  session: { strategy: "jwt" },
+  callbacks: {
+    session: ({ session, token, user }) => {
+      if (token) {
+        session.user.id = token.sub;
+        session.user.name = token.name;
+        session.user.email = token.email;
+        session.user.image = token.picture;
+      }
+      return session;
+    },
+  },
+  adapter: PrismaAdapter(prisma) as Adapter,
+  secret: process.env.NEXTAUTH_SECRET,
+  providers: [
+    CredentialsProvider({
+      type: "credentials",
+      async authorize(credentials, req) {
+        if (!credentials?.phoneNumber)
+          throw new Error("Please provide a phone number.");
+        const user = await prisma.user.findMany({
+          where: {
+            phoneNumber: credentials?.phoneNumber,
+          },
+        });
+        if (!user.length) throw new Error("User Not Found. Create Account");
+        return user[0];
+      },
+      credentials: {
+        phoneNumber: { label: "phoneNumber", type: "text" },
+      },
+    }),
+  ],
+};
 
 export type Book = {
   name: string;
