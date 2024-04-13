@@ -4,22 +4,17 @@ import { Dispatch, SetStateAction, useState } from "react";
 import { useRouter } from "next/navigation";
 
 const AllowAccess = ({
-  orderId,
+  onClick,
+  bid,
   loading,
-  setLoading,
 }: {
-  orderId: string;
   loading: boolean;
-  setLoading: Dispatch<SetStateAction<boolean>>;
+  bid: string;
+  onClick: (k: string) => void;
 }) => {
-  const allowing = async () => {
-    setLoading(true);
-    await allowOrder(orderId);
-    setLoading(false);
-  };
   return (
     <Button
-      onClick={allowing}
+      onClick={() => onClick(bid)}
       disabled={loading}
       className="bg-gray-800/90 rounded-full mx-auto px-8"
     >

@@ -49,6 +49,7 @@ const SignUpPage = () => {
             return setError(data.error);
           }
           if (data?.ok) {
+            router.refresh();
             router.push("/");
           }
         });

@@ -5,11 +5,14 @@ import { PrismaAdapter } from "@auth/prisma-adapter";
 import { Adapter } from "next-auth/adapters";
 
 export const authOptions: NextAuthOptions = {
+  pages: {
+    signIn: "/auth/sign-in",
+  },
   session: { strategy: "jwt" },
   callbacks: {
     session: ({ session, token, user }) => {
       if (token) {
-        session.user.id = token.id;
+        session.user.id = token.sub;
         session.user.name = token.name;
         session.user.email = token.email;
         session.user.image = token.picture;
@@ -30,14 +33,13 @@ export const authOptions: NextAuthOptions = {
             phoneNumber: credentials?.phoneNumber,
           },
         });
-        if (!user.length) throw new Error("User Phone-Number Not Found");
+        if (!user.length) throw new Error("User Not Found. Create Account");
         return user[0];
       },
       credentials: {
         phoneNumber: { label: "phoneNumber", type: "text" },
       },
     }),
-    /* ... additional providers ... /*/
   ],
 };
 

@@ -26,7 +26,7 @@ const AdminPage = () => {
     return <AdminBoard />;
   }
   return (
-    <div className="flex flex-col mx-auto w-full my-auto max-w-md p-12 border-amber-700/60 gap-3 rounded-b-xl border-t-8 bg-gray-200 shadow-lg">
+    <div className="flex flex-col mx-auto w-full my-auto max-w-md p-12 border-emerald-700/60 gap-3 rounded-b-xl border-t-8 bg-gray-200 shadow-lg">
       <span className="text-xl font-bold">Admin Panel</span>
       <Input
         placeholder="name"

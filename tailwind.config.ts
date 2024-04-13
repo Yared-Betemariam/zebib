@@ -74,6 +74,10 @@ const config = {
       },
       backgroundImage: {
         hero: "linear-gradient(to top, #f2ede7, rgba(255, 255, 255, 0)), url('/hero.jpg')",
+        main: "url('/main.png')",
+      },
+      screens: {
+        xs: "480px",
       },
     },
   },

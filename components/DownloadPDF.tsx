@@ -14,11 +14,11 @@ const DownloadPDF = ({ id, access }: { id: string; access: boolean }) => {
     setLoading(false);
   };
   return (
-    <div className="w-full flex">
+    <div className="w-full flex py-6">
       <Button
         disabled={!access || loading}
         onClick={download}
-        className="bg-amber-700/90 rounded-full ml-auto px-6"
+        className="bg-emerald-700/90 w-full"
       >
         {loading ? "Downloading" : "Download PDF"}
       </Button>

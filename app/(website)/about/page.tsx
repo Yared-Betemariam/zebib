@@ -2,11 +2,11 @@ const AboutPage = () => {
   return (
     <main className="flex flex-1 flex-col">
       <section className="wrapper py-12 flex flex-col gap-6">
-        <h1 className="text-3xl font-semibold text-amber-600">
+        <h1 className="text-3xl font-semibold text-emerald-600">
           About Us - ስለ ዘቢብ
         </h1>
         <div className="flex items-center gap-8">
-          <p>
+          <p className="hidden md:flex">
             Welcome to ዘቢብ , your premier destination for Islamic knowledge in
             digital format. Our platform is dedicated to providing a curated
             selection of high-quality eBooks covering a wide range of topics
@@ -24,7 +24,7 @@ const AboutPage = () => {
             ፍጥነት ያስሱ እና ይማሩ። የእኛ ለተጠቃሚ ምቹ የሆነ በይነገጽ ለማግኘት፣ ለማውረድ እና ለማውረድ ቀላል
             ያደርገዋል ከታዋቂ ሊቃውንት ጠቃሚ ኢስላማዊ ጽሑፎች ጋር መሳተፍ እና ደራሲያን።
           </p>
-          <p>
+          <p className="hidden md:flex">
             At ዘቢብ, we prioritize accessibility and convenience, allowing you to
             explore and learn at your own pace, anytime and anywhere. Our
             user-friendly interface makes it easy to discover, download, and
@@ -33,7 +33,7 @@ const AboutPage = () => {
           </p>
         </div>
         <div className="flex items-center gap-8">
-          <p>
+          <p className="hidden md:flex">
             Join us on this enriching journey of knowledge and spiritual growth.
             ዘቢብ is your trusted companion in deepening your understanding of
             Islam and its profound teachings.

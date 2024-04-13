@@ -8,8 +8,8 @@ const Footer = () => {
       <section className="wrapper py-6 opacity-80 flex flex-col gap-4">
         <div className="flex justify-between">
           <div className="flex items-center space-x-8">
-            <span className="text-amber-500 ">ዘቢብ እስላማዊ ኢ-መጽሐፍ ማዕከል</span>
-            <Link href={"/about"}>
+            <span className="text-emerald-500 ">ዘቢብ እስላማዊ ኢ-መጽሐፍ ማዕከል</span>
+            <Link href={"/about"} className="hidden sm:flex">
               <Button variant={"link"} className="p-0 text-gray-200">
                 About
               </Button>

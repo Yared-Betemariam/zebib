@@ -5,6 +5,7 @@ import { getUser } from "@/lib/utils";
 
 export const getOrders = async () => {
   const session = await getUser();
+  console.log(session?.user.id);
   const orders = await prisma.order.findMany({
     where: {
       userId: session?.user.id,

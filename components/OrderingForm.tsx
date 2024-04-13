@@ -66,7 +66,7 @@ const OrderingForm = () => {
       <div className="flex items-center justify-between border-b  border-gray-900/20 mb-4 pb-4">
         <span>Total</span>
         <span>
-          {book.price} <span className="text-base text-amber-700">ETB</span>
+          {book.price} <span className="text-base text-emerald-700">ETB</span>
         </span>
       </div>
       <Input

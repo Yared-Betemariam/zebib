@@ -11,9 +11,12 @@ const CartPage = async () => {
         <h1 className="text-2xl font-semibold">Pre-Order - የቅድሚያ ትእዛዝ</h1>
         {orders.length ? (
           orders.map((item, i) => (
-            <div key={item.id} className=" h-96  flex gap-6">
-              <div className="flex bg-gray-200/60 gap-2 flex-1 shadow-xl   border-amber-700/20 border-2">
-                <div className="relative w-[35%]">
+            <div
+              key={item.id}
+              className=" lg:h-96  flex gap-6 flex-col md:flex-row"
+            >
+              <div className="flex bg-gray-200/60 gap-2 flex-1 shadow-xl   border-emerald-700/20 border-2 flex-col lg:flex-row">
+                <div className="md:h-[50%] lg:h-full relative lg:w-[35%] h-80">
                   <Image
                     src={book.image}
                     alt={book.name}
@@ -25,18 +28,18 @@ const CartPage = async () => {
                   <h3 className="text-2xl truncate font-semibold">
                     {book.name}
                   </h3>
-                  <p className="text-xl opacity-80 text-amber-700">
+                  <p className="text-xl opacity-80 text-emerald-700">
                     {book.price} <span>ብር</span>
                   </p>
-                  <div className="flex flex-col">
+                  <div className="flex flex-col my-2">
                     <p className="text-sm opacity-80">Payment Status</p>
-                    <span className="text-base text-amber-700">
-                      {item.access ? "Payment Confirmed" : "On Process"}
+                    <span className="text-base text-emerald-700">
+                      {item.access ? "Payment Confirmed" : "Pre-order"}
                     </span>
                   </div>
                 </div>
               </div>
-              <div className="bg-gray-800 w-full max-w-[20rem] rounded-xl text-gray-200 p-8  shadow-xl flex flex-col gap-2">
+              <div className="bg-gray-800 w-full lg:max-w-[20rem] rounded-xl text-gray-200 p-8  shadow-xl flex flex-col gap-2">
                 <div className="flex flex-col">
                   <span className="text-sm opacity-80">Name</span>
                   <span>{item.name}</span>

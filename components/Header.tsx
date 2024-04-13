@@ -1,9 +1,10 @@
 import Link from "next/link";
-import { MdAccountCircle, MdSearch } from "react-icons/md";
+import { MdAccountCircle } from "react-icons/md";
 import { Button } from "./ui/button";
 import { getUser } from "@/lib/utils";
 import LogoutButton from "./LogoutButton";
 import OrderButton from "./OrderButton";
+import Image from "next/image";
 
 const Header = async () => {
   const user = await getUser();
@@ -22,15 +23,25 @@ const Header = async () => {
     },
   ];
   return (
-    <header className=" bg-[#C17215] h-32 shadow-md flex flex-col">
-      <section className="wrapper flex flex-1 items-center justify-between">
-        <h2 className="font-semibold text-gray-200/95 text-3xl">
-          ዘቢብ እስላማዊ ኢ-መጽሐፍ ማዕከል
-        </h2>
+    <header className=" h-36 shadow-md text-emerald-700 bg-gradient-to-br from-emerald-50/70 to-green-50/70 flex flex-col">
+      <section className="wrapper  flex flex-1 items-center justify-between">
+        <div className="flex items-center gap-4">
+          <Image
+            src={"/logo.png"}
+            alt="logo"
+            width={761}
+            height={739}
+            className=" w-16"
+          />
+          <h2 className="font-semibold text-3xl hidden lg:flex">
+            ዘቢብ እስላማዊ ኢ-መጽሐፍ ማዕከል
+          </h2>
+        </div>
         <div className="flex items-center space-x-2">
+          <MdAccountCircle size={38} />
           {user ? (
             <div className="flex items-center gap-4">
-              <span className="text-gray-200/90">{user.user?.name}</span>
+              <span className="">{user.user?.name}</span>
               <LogoutButton />
             </div>
           ) : (
@@ -40,10 +51,9 @@ const Header = async () => {
               </Button>
             </Link>
           )}
-          <MdAccountCircle size={38} className="text-gray-200" />
         </div>
       </section>
-      <div className="border-amber-100/20 border-t-2  text-gray-200 bg-gray-900/45 py-3">
+      <div className="border-emerald-100/20 border-t-2  text-gray-200 bg-gradient-to-r to-teal-700 from-emerald-700 py-3">
         <div className="wrapper flex justify-between items-center">
           <nav className="flex items-center space-x-4">
             {navLinks.map((item) => (
