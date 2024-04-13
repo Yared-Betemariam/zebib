@@ -18,7 +18,7 @@ const AdminOrders = () => {
     const interval = setInterval(async () => {
       const orders = await getAllOrders();
       setOrders(orders);
-    }, 5000); // Interval set to 2 seconds (2000 milliseconds)
+    }, 5000);
 
     return () => clearInterval(interval);
   });
